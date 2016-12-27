@@ -1,0 +1,37 @@
+<div class="col-md-6 col-md-offset-3 card">
+
+
+    <form  class="form-horizontal" name="eventsform">
+
+        <div class="form-group">
+
+            <label for="title" class="col-md-4 control-label">Event Title</label>
+            <!--<input type="file" placeholder="Choose an image" ng-model="data.image"  class="form-control" required>-->
+            <div class="col-md-8">
+            <input type="text" placeholder="Event Title" ng-model="data.name"  class="form-control" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="type" class="col-md-4 control-label">Event Type</label>
+
+            <div class="col-md-8">
+            <input type="text" placeholder="Event Type" ng-model="data.type" class="form-control" required>
+            </div>
+
+
+            </div>
+        <div class="form-group">
+            <label for="description" class="col-md-4 control-label">Description</label>
+
+            <div class="col-md-8">
+            <input type="text" placeholder="Event Description" ng-model="data.description" class="form-control" required>
+            </div>
+
+        </div>
+        <div class="form-group">
+
+            <button type="button" class="btn btn-primary" ng-disabled="eventsform.$invalid"  ng-click="allData('Events')">Submit</button>
+        </div>
+
+    </form>
+</div>

@@ -1,0 +1,15 @@
+<div class="col-md-6 col-md-offset-3 card">
+
+	<form name="studentform">
+
+		<div class="md-form">
+			<input type="text" placeholder="Name" ng-model="data.name"  class="form-control" required>
+			<input type="text" placeholder="Batch No" ng-model="data.batch" class="form-control" required>
+			<input type="text" placeholder="Semester" ng-model="data.semester" class="form-control" required>
+			<input type="text" placeholder="Attendance" ng-model="data.attendance" class="form-control" required>
+			<input type="text" placeholder="GPA" ng-model="data.gpa" class="form-control" required>
+			<input type="text" placeholder="CGPA" ng-model="data.cgpa" class="form-control" required>
+			<button type="button" class="btn btn-primary" ng-disabled="studentform.$invalid"  ng-click="allData('Student_Record')">Submit</button>
+		</div>
+	</form>
+</div>

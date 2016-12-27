@@ -1,0 +1,14 @@
+<div class="col-md-6 col-md-offset-3 card">
+
+    <form name="libraryform">
+
+        <div class="md-form">
+
+            <!--<input type="file" placeholder="Choose an image" ng-model="data.image"  class="form-control" required>-->
+            <input type="text" placeholder="Book Title" ng-model="data.title"  class="form-control" required>
+            <input type="text" placeholder="Book Name" ng-model="data.company_name" class="form-control" required>
+            <input type="text" placeholder="Author Name" ng-model="data.type" class="form-control" required>
+            <button type="button" class="btn btn-primary" ng-disabled="libraryform.$invalid"  ng-click="allData('Library')">Submit</button>
+        </div>
+    </form>
+</div>
