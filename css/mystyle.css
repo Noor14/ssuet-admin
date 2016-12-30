@@ -1,0 +1,29 @@
+ul.col-md-12{
+    padding: 0;
+}
+li.col-md-6{
+    border-radius: 4px;
+    padding:0;
+    text-align: center;
+}
+.nav-tabs li a{
+    /*border: none;*/
+    border:1px solid #eee;
+}
+.nav-tabs li a:hover{
+    border:1px solid #eee;
+
+    background-color: #eee;
+
+}
+.nav-tabs li.active a{
+    border:1px solid #eee !important;
+
+
+}
+div.tab-content{
+    padding:0;
+}
+td a{
+    cursor: pointer;
+}

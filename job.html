@@ -1,14 +1,59 @@
-<div class="col-md-6 col-md-offset-3 card">
 
-    <form name="jobform">
 
-        <div class="md-form">
+<div class="col-md-8 col-md-offset-2 card">
+
+    <ul class="nav nav-tabs col-md-12" role="tablist">
+        <li role="presentation" class="active col-md-6"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Insert Job</a></li>
+        <li role="presentation" class="col-md-6"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Review Job Data</a></li>
+
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="home">
+
+
+
+            <form name="jobform">
+
             <!--<input type="file" placeholder="Choose an image" ng-model="data.image"  class="form-control" required>-->
             <input type="text" placeholder="Job Title" ng-model="data.name"  class="form-control" required>
             <input type="text" placeholder="Job Type" ng-model="data.type" class="form-control" required>
             <input type="text" placeholder="Company Name" ng-model="data.company_name" class="form-control" required>
             <input type="text" placeholder="Job Description" ng-model="data.description" class="form-control" required>
             <button type="button" class="btn btn-primary" ng-disabled="jobform.$invalid"  ng-click="allData('Jobs')">Submit</button>
+            </form>
+
         </div>
-    </form>
+        <div role="tabpanel" class="tab-pane" id="profile">
+            <table class="table table-striped" ng-show="getdata.length">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Job Title</th>
+                    <th>Job Type</th>
+                    <th>Company Name</th>
+                    <th>Job Description</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+
+                </thead>
+                <tbody>
+                <tr ng-repeat="data in getdata">
+                    <td>{{$index+1}}</td>
+                    <td>{{data.value.name}}</td>
+                    <td>{{data.value.type}}</td>
+                    <td>{{data.value.company_name}}</td>
+                    <td>{{data.value.description}}</td>
+                    <td><a><span class="glyphicon glyphicon-pencil"></span></a></td>
+                    <td><a ng-click="delete(node)"><span class="glyphicon glyphicon-trash"></span></a></td>
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
 </div>

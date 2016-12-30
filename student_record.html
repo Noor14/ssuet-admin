@@ -1,15 +1,61 @@
-<div class="col-md-6 col-md-offset-3 card">
 
-	<form name="studentform">
+<div class="col-md-8 col-md-offset-2 card">
 
-		<div class="md-form">
-			<input type="text" placeholder="Name" ng-model="data.name"  class="form-control" required>
-			<input type="text" placeholder="Batch No" ng-model="data.batch" class="form-control" required>
-			<input type="text" placeholder="Semester" ng-model="data.semester" class="form-control" required>
-			<input type="text" placeholder="Attendance" ng-model="data.attendance" class="form-control" required>
-			<input type="text" placeholder="GPA" ng-model="data.gpa" class="form-control" required>
-			<input type="text" placeholder="CGPA" ng-model="data.cgpa" class="form-control" required>
-			<button type="button" class="btn btn-primary" ng-disabled="studentform.$invalid"  ng-click="allData('Student_Record')">Submit</button>
-		</div>
-	</form>
+<ul class="nav nav-tabs col-md-12" role="tablist">
+	<li role="presentation" class="active col-md-6"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Insert Record</a></li>
+	<li role="presentation" class="col-md-6"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Review Student Record</a></li>
+
+</ul>
+<div class="tab-content">
+	<div role="tabpanel" class="tab-pane active" id="home">
+
+
+		<form name="studentform">
+		<input type="text" placeholder="Name" ng-model="data.name"  class="form-control" required>
+		<input type="text" placeholder="Batch No" ng-model="data.batch" class="form-control" required>
+		<input type="text" placeholder="Semester" ng-model="data.semester" class="form-control" required>
+		<input type="text" placeholder="Attendance" ng-model="data.attendance" class="form-control" required>
+		<input type="text" placeholder="GPA" ng-model="data.gpa" class="form-control" required>
+		<input type="text" placeholder="CGPA" ng-model="data.cgpa" class="form-control" required>
+		<button type="button" class="btn btn-primary"ng-disabled="studentform.$invalid" ng-click="allData(node)">Submit</button>
+
+		</form>
+	</div>
+	<div role="tabpanel" class="tab-pane" id="profile">
+		<table class="table table-striped" ng-show="getdata.length">
+			<thead>
+			<tr>
+				<th>#</th>
+				<th>Name</th>
+				<th>Batch</th>
+				<th>Semester</th>
+				<th>Attendance</th>
+				<th>GPA</th>
+				<th>CGPA</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+
+			</thead>
+			<tbody>
+			<tr ng-repeat="data in getdata">
+				<td>{{$index+1}}</td>
+				<td>{{data.value.name}}</td>
+				<td>{{data.value.batch}}</td>
+				<td>{{data.value.semester}}</td>
+				<td>{{data.value.attendance}}</td>
+				<td>{{data.value.gpa}}</td>
+				<td>{{data.value.cgpa}}</td>
+				<td><a><span class="glyphicon glyphicon-pencil"></span></a></td>
+				<td><a ng-click="delete(node)"><span class="glyphicon glyphicon-trash"></span></a></td>
+			</tr>
+
+			</tbody>
+
+		</table>
+
+	</div>
+
+</div>
+
 </div>

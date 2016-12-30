@@ -1,37 +1,54 @@
-<div class="col-md-6 col-md-offset-3 card">
+
+    <div class="col-md-8 col-md-offset-2 card">
+
+        <ul class="nav nav-tabs col-md-12" role="tablist">
+            <li role="presentation" class="active col-md-6"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Insert Events</a></li>
+            <li role="presentation" class="col-md-6"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Review Events</a></li>
+
+        </ul>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="home">
 
 
-    <form  class="form-horizontal" name="eventsform">
 
-        <div class="form-group">
+                <form  class="form-horizontal" name="eventsform">
+                    <input type="text" placeholder="Event Title" ng-model="data.name"  class="form-control" required>
+                    <input type="text" placeholder="Event Type" ng-model="data.type" class="form-control" required>
+                    <input type="text" placeholder="Event Description" ng-model="data.description" class="form-control" required>
+                    <button type="button" class="btn btn-primary" ng-disabled="eventsform.$invalid"  ng-click="allData('Events')">Submit</button>
 
-            <label for="title" class="col-md-4 control-label">Event Title</label>
-            <!--<input type="file" placeholder="Choose an image" ng-model="data.image"  class="form-control" required>-->
-            <div class="col-md-8">
-            <input type="text" placeholder="Event Title" ng-model="data.name"  class="form-control" required>
+                </form>
+
             </div>
+            <div role="tabpanel" class="tab-pane" id="profile">
+                <table class="table table-striped" ng-show="getdata.length">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Event Name</th>
+                        <th>Event Type</th>
+                        <th>Event Description</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="data in getdata">
+                        <td>{{$index+1}}</td>
+                        <td>{{data.value.name}}</td>
+                        <td>{{data.value.type}}</td>
+                        <td>{{data.value.description}}</td>
+                        <td><a><span class="glyphicon glyphicon-pencil"></span></a></td>
+                        <td><a ng-click="delete(node)"><span class="glyphicon glyphicon-trash"></span></a></td>
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
         </div>
-        <div class="form-group">
-            <label for="type" class="col-md-4 control-label">Event Type</label>
 
-            <div class="col-md-8">
-            <input type="text" placeholder="Event Type" ng-model="data.type" class="form-control" required>
-            </div>
-
-
-            </div>
-        <div class="form-group">
-            <label for="description" class="col-md-4 control-label">Description</label>
-
-            <div class="col-md-8">
-            <input type="text" placeholder="Event Description" ng-model="data.description" class="form-control" required>
-            </div>
-
-        </div>
-        <div class="form-group">
-
-            <button type="button" class="btn btn-primary" ng-disabled="eventsform.$invalid"  ng-click="allData('Events')">Submit</button>
-        </div>
-
-    </form>
-</div>
+    </div>
