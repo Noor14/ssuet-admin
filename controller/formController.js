@@ -5,6 +5,24 @@ web.controller('formcont', function($rootScope, $scope, $state){
     $scope.node=$state.current.name;
     $rootScope.current_page = $state.current.title;
 
+
+    $scope.tabOne = false;
+    $scope.tabTwo = true;
+
+    $scope.insertform = function(){
+        $scope.tabOne = false;
+        $scope.tabTwo = true;
+        console.log($scope.tabOne,$scope.tabTwo,"noor");
+
+    };
+
+    $scope.form = function(){
+        $scope.tabOne = true;
+        $scope.tabTwo = false;
+        console.log($scope.tabOne,$scope.tabTwo,"noor");
+
+
+    };
 $scope.allData= function(node) {
 
 
@@ -40,9 +58,14 @@ $scope.allData= function(node) {
 
                $scope.getdata.push(gt);
 
-        console.log(prevChildKey,"noor");
+        console.log(ref.key,"noor");
     });
 
+$scope.login = function(){
+    $scope.user = {};
+    var promise =  firebase.auth.createUserWithEmailAndPassword($scope.user.email,$scope.user.password);
+console.log(firebase.auth,"Ho");
+}
 $scope.delete = function(node){
     console.log("jj");
 

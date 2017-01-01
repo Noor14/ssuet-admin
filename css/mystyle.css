@@ -1,7 +1,7 @@
 ul.col-md-12{
     padding: 0;
 }
-li.col-md-6{
+ul.col-md-12 li{
     border-radius: 4px;
     padding:0;
     text-align: center;
@@ -24,6 +24,13 @@ li.col-md-6{
 div.tab-content{
     padding:0;
 }
-td a{
+td a , ul li a{
     cursor: pointer;
+}
+
+@media only screen and (max-width:600px){
+    .nav-tabs>li {
+        width: 100%;
+        float: none !important;
+    }
 }

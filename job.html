@@ -3,12 +3,12 @@
 <div class="col-md-8 col-md-offset-2 card">
 
     <ul class="nav nav-tabs col-md-12" role="tablist">
-        <li role="presentation" class="active col-md-6"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Insert Job</a></li>
-        <li role="presentation" class="col-md-6"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Review Job Data</a></li>
+        <li role="presentation" class="active col-md-6 col-sm-6 col-xs-6"><a ng-click="insertform()"  aria-controls="home" role="tab" data-toggle="tab">Insert Job</a></li>
+        <li role="presentation" class="col-md-6 col-xs-6 col-sm-6"><a ng-click="form()" aria-controls="profile" role="tab" data-toggle="tab">Review Job Data</a></li>
 
     </ul>
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="home">
+        <div role="tabpanel" class="tab-pane active" ng-hide="tabOne">
 
 
 
@@ -23,7 +23,7 @@
             </form>
 
         </div>
-        <div role="tabpanel" class="tab-pane" id="profile">
+        <div role="tabpanel" class="tab-pane active table-responsive"  ng-hide="tabTwo">
             <table class="table table-striped" ng-show="getdata.length">
                 <thead>
                 <tr>

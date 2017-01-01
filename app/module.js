@@ -1,9 +1,29 @@
 var web = angular.module ("form", ['firebase','ui.router']);
 
+web.run(function($rootScope, $state){
 
+    $rootScope
+        .$on('$stateChangeSuccess',
+            function () {
+                $rootScope.state = false;
+                $rootScope.class="panel-body";
+                $rootScope.panel="panel-default";
+                $rootScope.main = "col-sm-9 col-sm-offset-3";
+
+                if($state.current.name == "login"){
+                    $rootScope.state = true;
+                    $rootScope.class="my_class";
+                    $rootScope.panel = "my_panel";
+                    $rootScope.main = "my_main";
+
+                }
+
+
+            });
+});
 
 web.config(function($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/student_record');
+    $urlRouterProvider.otherwise('/login');
 
 
     $stateProvider
@@ -11,8 +31,8 @@ web.config(function($stateProvider, $urlRouterProvider) {
         .state('login', {
             url: '/login',
             templateUrl: 'login.html',
-            title: 'Login'
-            //controller: "formcont"
+            title: 'Login',
+            controller: "formcont"
 
         })
         .state('student_record', {
