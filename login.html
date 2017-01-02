@@ -17,7 +17,9 @@
 									<input name="remember" type="checkbox" value="Remember Me">Remember Me
 								</label>
 							</div>
-							<a class="btn btn-primary" ng-click="login()" ng-disabled="loginform.$invalid">Login</a>
+							<a class="btn btn-primary" ng-click="login()" ng-disabled="loginform.$invalid">Login</a><img class="loader" ng-src ="{{loadingImage}}" ng-hide="active">
+							<span>{{invalid}}</span>
+
 						</fieldset>
 					</form>
 				</div>

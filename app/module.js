@@ -2,9 +2,22 @@ var web = angular.module ("form", ['firebase','ui.router']);
 
 web.run(function($rootScope, $state){
 
+    $rootScope.logout= function(){
+
+        firebase.auth().signOut().then(function() {
+            console.log("Logged out!");
+            $rootScope.user='';
+            $state.go("login");
+        }, function(error) {
+            console.log(error.code);
+            console.log(error.message);
+        });
+    };
     $rootScope
         .$on('$stateChangeSuccess',
             function () {
+
+
                 $rootScope.state = false;
                 $rootScope.class="panel-body";
                 $rootScope.panel="panel-default";
@@ -20,6 +33,18 @@ web.run(function($rootScope, $state){
 
 
             });
+
+
+    $rootScope
+        .$on('$stateChangeStart',
+            function (e, toState, toParams, fromState, fromParams) {
+
+                if(toState.name == 'login' && $rootScope.user){
+                    e.preventDefault();
+                    $state.go('student_record');
+                }
+
+            });
 });
 
 web.config(function($stateProvider, $urlRouterProvider) {
@@ -33,8 +58,8 @@ web.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'login.html',
             title: 'Login',
             controller: "formcont"
-
         })
+
         .state('student_record', {
             url: '/student_record',
             templateUrl: 'student_record.html',

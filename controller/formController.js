@@ -1,9 +1,10 @@
 web.controller('formcont', function($rootScope, $scope, $state){
-
     $scope.data = {};
     $scope.user = {};
     $scope.node = $state.current.name;
     $rootScope.current_page = $state.current.title;
+    $scope.loadingImage = "images/load.gif";
+    $scope.active = true;
 
 
     $scope.tabOne = false;
@@ -34,6 +35,24 @@ $scope.allData= function(node) {
 
 
 };
+
+
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            console.log(user.email);
+            $rootScope.user = user.email;
+            //$state.go("student_record");
+
+        }
+        else{
+
+            $state.go("login");
+        }
+    });
+
+
+
+
     $scope.retrieve = function(){
 
 
@@ -72,14 +91,26 @@ $scope.allData= function(node) {
     $scope.retrieve();
 
     $scope.login = function(){
-console.log($scope.user.email,'mu');
+        $scope.active = false;
 
-        firebase.auth().signInWithEmailAndPassword($scope.user.email, $scope.user.password).then(function(error) {
-            console.log(error.code);
-            console.log(error.message);
-                if(!error.code){
+
+        firebase.auth().signInWithEmailAndPassword($scope.user.email, $scope.user.password).then(function(succ) {
+
+            if(!succ.code){
+                    $scope.active = true;
                     $state.go("student_record");
                 }
+
+        },function(error){
+
+            $scope.$apply(function(){
+
+                console.log(error.code);
+                console.log(error.message);
+                $scope.invalid = "Invalid email or password";
+                $scope.active = true;
+            })
+
 
         });
 
