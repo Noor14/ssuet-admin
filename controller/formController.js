@@ -1,8 +1,7 @@
 web.controller('formcont', function($rootScope, $scope, $state){
 
-    $scope.getdata=[];
     $scope.data = {};
-    $scope.node=$state.current.name;
+    $scope.node = $state.current.name;
     $rootScope.current_page = $state.current.title;
 
 
@@ -12,14 +11,14 @@ web.controller('formcont', function($rootScope, $scope, $state){
     $scope.insertform = function(){
         $scope.tabOne = false;
         $scope.tabTwo = true;
-        console.log($scope.tabOne,$scope.tabTwo,"noor");
+        //console.log($scope.tabOne,$scope.tabTwo,"noor");
 
     };
 
     $scope.form = function(){
         $scope.tabOne = true;
         $scope.tabTwo = false;
-        console.log($scope.tabOne,$scope.tabTwo,"noor");
+        //console.log($scope.tabOne,$scope.tabTwo,"noor");
 
 
     };
@@ -29,9 +28,14 @@ $scope.allData= function(node) {
     var ref = firebase.database().ref(node);
     ref.push($scope.data);
     $scope.data = {};
+    $scope.retrieve();
+
 
 
 };
+    $scope.retrieve = function(){
+
+
     var ref = firebase.database().ref($state.current.name);
     //var ref = firebase.database().ref();
 
@@ -46,31 +50,38 @@ $scope.allData= function(node) {
     //        //gt.key = childSnapshot.key;
     //        //
     //        //$scope.getdata.push(gt);
-    //        console.log(childSnapshot.val(),'Noor');
+    //        console.log(childSnapshot.key,'Noor');
     //    });
     //}, function (error) {
     //    console.log("Error: " + error.code);
     //});
-   ref.on("child_added", function(data, prevChildKey) {
+        $scope.getdata=[];
+
+        ref.on("child_added", function(data, prevChildKey) {
        //console.log(data.val(),"data");
-               gt = {};
-               gt.value = data.val();
+            $scope.gt = {};
+       $scope.gt.value = data.val();
+       $scope.gt.key = data.key;
 
-               $scope.getdata.push(gt);
+               $scope.getdata.push($scope.gt);
 
-        console.log(ref.key,"noor");
+        console.log($scope.gt.key,"noor");
     });
+    };
+    $scope.retrieve();
 
-$scope.login = function(){
+    $scope.login = function(){
     $scope.user = {};
     var promise =  firebase.auth.createUserWithEmailAndPassword($scope.user.email,$scope.user.password);
 console.log(firebase.auth,"Ho");
-}
-$scope.delete = function(node){
-    console.log("jj");
+};
+$scope.delete = function(node,key){
 
     var ref = firebase.database().ref(node);
-ref.child(key).remove();
+    //console.log(ref.child(key).remove(),"ll");
+    ref.child(key).remove();
+    $scope.retrieve();
+
 //    ref.off('value', function(childSnapshot.key) {
 //        console.log("jj",childSnapshot.key);
 //    }, function (error) {
