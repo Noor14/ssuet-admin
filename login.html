@@ -17,7 +17,7 @@
 									<input name="remember" type="checkbox" value="Remember Me">Remember Me
 								</label>
 							</div>
-							<a ui-sref="student_record" class="btn btn-primary" ng-click="login()">Login</a>
+							<a class="btn btn-primary" ng-click="login()" ng-disabled="loginform.$invalid">Login</a>
 						</fieldset>
 					</form>
 				</div>

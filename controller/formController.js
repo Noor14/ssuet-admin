@@ -1,6 +1,7 @@
 web.controller('formcont', function($rootScope, $scope, $state){
 
     $scope.data = {};
+    $scope.user = {};
     $scope.node = $state.current.name;
     $rootScope.current_page = $state.current.title;
 
@@ -71,10 +72,19 @@ $scope.allData= function(node) {
     $scope.retrieve();
 
     $scope.login = function(){
-    $scope.user = {};
-    var promise =  firebase.auth.createUserWithEmailAndPassword($scope.user.email,$scope.user.password);
-console.log(firebase.auth,"Ho");
-};
+console.log($scope.user.email,'mu');
+
+        firebase.auth().signInWithEmailAndPassword($scope.user.email, $scope.user.password).then(function(error) {
+            console.log(error.code);
+            console.log(error.message);
+                if(!error.code){
+                    $state.go("student_record");
+                }
+
+        });
+
+
+    };
 $scope.delete = function(node,key){
 
     var ref = firebase.database().ref(node);
