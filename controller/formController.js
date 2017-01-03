@@ -1,4 +1,4 @@
-web.controller('formcont', function($rootScope, $scope, $state){
+web.controller('formcont', function($rootScope, $scope, $state, $cookies){
     $scope.data = {};
     $scope.user = {};
     $scope.node = $state.current.name;
@@ -9,6 +9,9 @@ web.controller('formcont', function($rootScope, $scope, $state){
 
     $scope.tabOne = false;
     $scope.tabTwo = true;
+
+    $scope.user.email = $cookies.get('email');
+    $scope.user.password = $cookies.get('password');
 
     $scope.insertform = function(){
         $scope.tabOne = false;
@@ -97,6 +100,8 @@ $scope.allData= function(node) {
         firebase.auth().signInWithEmailAndPassword($scope.user.email, $scope.user.password).then(function(succ) {
 
             if(!succ.code){
+                $cookies.put('email', $scope.user.email);
+                $cookies.put('password', $scope.user.password);
                     $scope.active = true;
                     $state.go("student_record");
                 }

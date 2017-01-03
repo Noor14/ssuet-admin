@@ -1,4 +1,4 @@
-var web = angular.module ("form", ['firebase','ui.router']);
+var web = angular.module ("form", ['firebase','ui.router','ngCookies']);
 
 web.run(function($rootScope, $state){
 
