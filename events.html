@@ -14,7 +14,7 @@
                 <form  class="form-horizontal" name="eventsform">
                     <input type="text" placeholder="Event Title" ng-model="data.name"  class="form-control" required>
                     <input type="text" placeholder="Event Type" ng-model="data.type" class="form-control" required>
-                    <input type="text" placeholder="Event Description" ng-model="data.description" class="form-control" required>
+                    <textarea rows="5" placeholder="Event Description" ng-model="data.description" class="form-control" required></textarea>
                     <button type="button" class="btn btn-primary" ng-disabled="eventsform.$invalid"  ng-click="allData(node)">Submit</button>
 
                 </form>
@@ -34,7 +34,7 @@
 
                     </thead>
                     <tbody>
-                    <tr ng-repeat="data in getdata">
+                    <tr dir-paginate="data in getdata | itemsPerPage: 10">
                         <td>{{$index+1}}</td>
                         <td>{{data.value.name}}</td>
                         <td>{{data.value.type}}</td>
@@ -46,6 +46,14 @@
                     </tbody>
 
                 </table>
+                <div class="page">
+                    <dir-pagination-controls
+                            max-size="9"
+                            direction-links="true"
+                            boundry-links="true">
+
+                    </dir-pagination-controls>
+                </div>
 
             </div>
 

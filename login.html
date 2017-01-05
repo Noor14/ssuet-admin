@@ -4,16 +4,16 @@
 			<div class="login-panel panel panel-default">
 				<div class="panel-heading">Log in</div>
 				<div class="panel-body">
-					<form role="form" name="loginform">
+					<form role="form" name="loginform" ng-submit="login()">
 						<fieldset>
 							<div class="form-group">
-								<input class="form-control" ng-model="user.email" placeholder="E-mail" type="email" autofocus required>
+								<input class="form-control" autocomplete="on" ng-model="user.email" placeholder="E-mail" type="email" autofocus required>
 							</div>
 							<div class="form-group">
-								<input class="form-control" ng-model="user.password" placeholder="Password" type="password" required>
+								<input class="form-control" autocomplete="on" ng-model="user.password" placeholder="Password" type="password" required>
 							</div>
 
-							<a class="btn btn-primary" ng-click="login()" ng-disabled="loginform.$invalid">Login</a><img class="loader" ng-src ="{{loadingImage}}" ng-hide="active">
+							<input type="submit" class="btn btn-primary" value="Login" ng-disabled="loginform.$invalid"><img class="loader" ng-src ="{{loadingImage}}" ng-hide="active">
 							<span>{{invalid}}</span>
 
 						</fieldset>

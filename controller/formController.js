@@ -1,11 +1,11 @@
-web.controller('formcont', function($rootScope, $scope, $state, $cookies){
+web.controller('formcont', function($rootScope, $scope, $state, $cookies, ngDialog){
     $scope.data = {};
     $scope.user = {};
     $scope.node = $state.current.name;
     $rootScope.current_page = $state.current.title;
     $scope.loadingImage = "images/load.gif";
     $scope.active = true;
-
+$scope.semester = ["Semester 1st", "Semester 2nd", "Semester 3rd", "Semester 4th", "Semester 5th", "Semester 6th", "Semester 7th", "Semester 8th"]
 
     $scope.tabOne = false;
     $scope.tabTwo = true;
@@ -38,6 +38,18 @@ $scope.allData= function(node) {
 
 
 };
+
+    $scope.clickToOpen = function (node,key) {
+        console.log(node,key,"lo");
+        ngDialog.open({
+            template: 'tables.html',
+            controller : 'formcont'
+    });
+
+    };
+
+
+
 
 
     firebase.auth().onAuthStateChanged(function(user) {
@@ -124,7 +136,6 @@ $scope.allData= function(node) {
 $scope.delete = function(node,key){
 
     var ref = firebase.database().ref(node);
-    //console.log(ref.child(key).remove(),"ll");
     ref.child(key).remove();
     $scope.retrieve();
 

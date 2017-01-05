@@ -35,7 +35,7 @@
 
                 </thead>
                 <tbody>
-                <tr ng-repeat="data in getdata">
+                <tr dir-paginate="data in getdata | itemsPerPage: 10">
                     <td>{{$index+1}}</td>
                     <td>{{data.value.title}}</td>
                     <td>{{data.value.name}}</td>
@@ -47,7 +47,14 @@
                 </tbody>
 
             </table>
+            <div class="page">
+                <dir-pagination-controls
+                        max-size="9"
+                        direction-links="true"
+                        boundry-links="true">
 
+                </dir-pagination-controls>
+            </div>
         </div>
 
     </div>

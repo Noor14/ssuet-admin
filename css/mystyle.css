@@ -27,7 +27,34 @@ div.tab-content{
 td a , ul li a{
     cursor: pointer;
 }
-
+.select{
+    padding-left: 8px;
+}
+.page{
+    text-align: center;
+}
+.page .pagination{
+    margin: 0;
+    padding: 0;
+}
+.page .pagination >li >a:hover{
+    color: #fff;
+    background-color: #428bca;
+}
+.search{
+    background: url("../images/search.png") no-repeat right;
+    background-size: 25px;
+    padding-right: 28px;
+    display: inline;
+    float: right;
+    width: inherit !important;
+}
+h3{
+    margin-top: 3em;
+    text-align: center;
+    color: #30a5ff;
+    font-family: serif;
+}
 @media only screen and (max-width:600px){
     .nav-tabs>li {
         width: 100%;
