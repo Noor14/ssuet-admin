@@ -39,13 +39,30 @@ $scope.allData= function(node) {
 
 };
 
-    $scope.clickToOpen = function (node,key) {
-        console.log(node,key,"lo");
-        ngDialog.open({
+    $scope.deletePopup = function (node,key) {
+       $scope.dialog = ngDialog.open({
             template: 'tables.html',
-            controller : 'formcont'
-    });
+            controller : function($scope){
 
+                $scope.delete = function(){
+
+                    var ref = firebase.database().ref(node);
+                    ref.child(key).remove();
+                    $scope.confirmation = "Your selected item has been deleted";
+                    $scope.closeThisDialog();
+
+
+                };
+
+
+            }
+
+    });
+        $scope.dialog.closePromise.then(function (data) {
+            $scope.retrieve();
+
+            console.log(data + ' has been dismissed.');
+        });
     };
 
 
@@ -133,7 +150,7 @@ $scope.allData= function(node) {
 
 
     };
-$scope.delete = function(node,key){
+$scope.edit = function(node,key){
 
     var ref = firebase.database().ref(node);
     ref.child(key).remove();

@@ -51,8 +51,8 @@
 				<td>{{data.value.attendance}}</td>
 				<td>{{data.value.gpa}}</td>
 				<td>{{data.value.cgpa}}</td>
-				<td><a ng-click="delete(node, data.key)"><span class="glyphicon glyphicon-pencil"></span></a></td>
-				<td><a ng-click="clickToOpen(node, data.key)"><span class="glyphicon glyphicon-trash"></span></a></td>
+				<td><a ng-click="edit(node, data.key)"><span class="glyphicon glyphicon-pencil"></span></a></td>
+				<td><a ng-click="deletePopup(node, data.key)"><span class="glyphicon glyphicon-trash"></span></a></td>
 			</tr>
 
 			</tbody>
