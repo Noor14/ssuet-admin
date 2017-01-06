@@ -7,22 +7,20 @@
 
 </ul>
 <div class="tab-content">
-	<div role="tabpanel" class="tab-pane active" ng-hide="tabOne">
+	<div role="tabpanel" class="tab-pane active"  ng-hide="tabOne">
 
 
 		<form name="studentform">
 		<input type="text" placeholder="Name" ng-model="data.name"  class="form-control" required>
 		<input type="text" placeholder="Batch No" ng-model="data.batch" class="form-control" required>
-			<select class="select form-control" ng-model="data.semester" required>
+			<select class="select form-control" ng-model="data.semester" ng-options="sem for sem in semester" required>
 				<option value="">Select Semester</option>
-				<option ng-repeat = "sem in semester" ng-value="sem">
-					{{sem}}
-				</option>
 			</select>
 		<input type="text" placeholder="Attendance" ng-model="data.attendance" class="form-control" required>
 		<input type="text" placeholder="GPA" ng-model="data.gpa" class="form-control" required>
 		<input type="text" placeholder="CGPA" ng-model="data.cgpa" class="form-control" required>
-		<button type="button" class="btn btn-primary" ng-disabled="studentform.$invalid" ng-click="allData(node)">Submit</button>
+		<button type="button" ng-hide="insert" class="btn btn-primary" ng-disabled="studentform.$invalid" ng-click="allData(node)">Submit</button>
+		<button type="button" ng-show="update" class="btn btn-primary" ng-disabled="studentform.$invalid" ng-click="updateData(node, key)">Update</button>
 
 		</form>
 	</div>
@@ -51,7 +49,7 @@
 				<td>{{data.value.attendance}}</td>
 				<td>{{data.value.gpa}}</td>
 				<td>{{data.value.cgpa}}</td>
-				<td><a ng-click="edit(node, data.key)"><span class="glyphicon glyphicon-pencil"></span></a></td>
+				<td><a ng-click="edit(data)"><span class="glyphicon glyphicon-pencil"></span></a></td>
 				<td><a ng-click="deletePopup(node, data.key)"><span class="glyphicon glyphicon-trash"></span></a></td>
 			</tr>
 

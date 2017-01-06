@@ -5,7 +5,10 @@ web.controller('formcont', function($rootScope, $scope, $state, $cookies, ngDial
     $rootScope.current_page = $state.current.title;
     $scope.loadingImage = "images/load.gif";
     $scope.active = true;
-$scope.semester = ["Semester 1st", "Semester 2nd", "Semester 3rd", "Semester 4th", "Semester 5th", "Semester 6th", "Semester 7th", "Semester 8th"]
+    $scope.insert = false;
+    $scope.update = false;
+
+    $scope.semester = ["Semester 1st", "Semester 2nd", "Semester 3rd", "Semester 4th", "Semester 5th", "Semester 6th", "Semester 7th", "Semester 8th"]
 
     $scope.tabOne = false;
     $scope.tabTwo = true;
@@ -23,6 +26,9 @@ $scope.semester = ["Semester 1st", "Semester 2nd", "Semester 3rd", "Semester 4th
     $scope.form = function(){
         $scope.tabOne = true;
         $scope.tabTwo = false;
+        $scope.insert = false;
+        $scope.update = false;
+        $scope.data = {};
         //console.log($scope.tabOne,$scope.tabTwo,"noor");
 
 
@@ -48,6 +54,11 @@ $scope.allData= function(node) {
 
                     var ref = firebase.database().ref(node);
                     ref.child(key).remove();
+                    //    ref.off('value', function(childSnapshot.key) {
+                    //        console.log("jj",childSnapshot.key);
+                    //    }, function (error) {
+                    //        console.log("Error: " + error.code);
+                    //    });
                     $scope.confirmation = "Your selected item has been deleted";
                     $scope.closeThisDialog();
 
@@ -102,7 +113,7 @@ $scope.allData= function(node) {
     //        //gt.key = childSnapshot.key;
     //        //
     //        //$scope.getdata.push(gt);
-    //        console.log(childSnapshot.key,'Noor');
+    //        console.log(childSnapshot.key,childSnapshot.val(),childSnapshot.name,'Noor');
     //    });
     //}, function (error) {
     //    console.log("Error: " + error.code);
@@ -150,17 +161,28 @@ $scope.allData= function(node) {
 
 
     };
-$scope.edit = function(node,key){
+    $scope.updateData = function(node, key){
 
-    var ref = firebase.database().ref(node);
-    ref.child(key).remove();
-    $scope.retrieve();
+        var ref = firebase.database().ref(node);
+        ref.child(key).update($scope.data);
+        $scope.data={};
+        $scope.insert = false;
+        $scope.update = false;
+        $scope.retrieve();
+    };
+$scope.edit = function(data){
+    $scope.data = data.value;
+    $scope.key = data.key;
+    console.log($scope.data.semester,'nms');
+    $scope.insert = true;
+    $scope.update = true;
+    $scope.tabOne = false;
+    $scope.tabTwo = true;
+    //var ref = firebase.database().ref(node);
+    //ref.child(key).remove();
+    //$scope.retrieve();
 
-//    ref.off('value', function(childSnapshot.key) {
-//        console.log("jj",childSnapshot.key);
-//    }, function (error) {
-//        console.log("Error: " + error.code);
-//    });
+
 }
 
 

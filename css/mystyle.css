@@ -55,6 +55,9 @@ h3{
     color: #30a5ff;
     font-family: serif;
 }
+.notactive{
+    background-color: red !important;
+}
 @media only screen and (max-width:600px){
     .nav-tabs>li {
         width: 100%;
