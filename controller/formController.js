@@ -1,4 +1,4 @@
-web.controller('formcont', function($rootScope, $scope, $state, $cookies, ngDialog){
+web.controller('formcont', function($rootScope, $scope, $state, $cookies, ngDialog, toaster){
     $scope.data = {};
     $scope.user = {};
     $scope.node = $state.current.name;
@@ -40,6 +40,14 @@ $scope.allData= function(node) {
     ref.push($scope.data);
     $scope.data = {};
     $scope.retrieve();
+    toaster.pop(
+
+        {
+            type: 'success',
+            title: 'Insert',
+            body: 'Your data has been inserted'
+        }
+    );
 
 
 
@@ -169,6 +177,14 @@ $scope.allData= function(node) {
         $scope.insert = false;
         $scope.update = false;
         $scope.retrieve();
+        toaster.pop(
+
+            {
+                type: 'success',
+                title: 'Edit',
+                body: 'Your data has been updated'
+            }
+        );
     };
 $scope.edit = function(data){
     $scope.data = data.value;
