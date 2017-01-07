@@ -55,7 +55,7 @@ $scope.allData= function(node) {
 
     $scope.deletePopup = function (node,key) {
        $scope.dialog = ngDialog.open({
-            template: 'tables.html',
+            template: 'dialogbox.html',
             controller : function($scope){
 
                 $scope.delete = function(){
@@ -143,7 +143,7 @@ $scope.allData= function(node) {
 
     $scope.login = function(){
         $scope.active = false;
-
+        $scope.invalid = "";
 
         firebase.auth().signInWithEmailAndPassword($scope.user.email, $scope.user.password).then(function(succ) {
 
