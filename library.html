@@ -11,13 +11,19 @@
 
 
 
-            <form name="libraryform">
+            <form class="form-horizontal" name="libraryform">
+                <div class="col-md-6">
+            <input  type="file" ng-model="data.image" class="form-control" required>
+                </div>
+                <div class="col-md-3">
+                    <button ng-disabled="!data.image" class="form-control btn btn-primary"> <span class="glyphicon glyphicon-zoom-in"></span> View</button>
+                </div>
 
-            <!--<input type="file" placeholder="Choose an image" ng-model="data.image"  class="form-control" required>-->
-            <input type="text" placeholder="Book Title" ng-model="data.title"  class="form-control" required>
+                <input type="text" placeholder="Book Title" ng-model="data.title"  class="form-control" required>
             <input type="text" placeholder="Book Name" ng-model="data.name" class="form-control" required>
             <input type="text" placeholder="Author Name" ng-model="data.author" class="form-control" required>
-            <button type="button" class="btn btn-primary" ng-disabled="libraryform.$invalid"  ng-click="allData(node)">Submit</button>
+            <button type="button" ng-hide="insert" class="btn btn-primary" ng-disabled="libraryform.$invalid" ng-click="allData(node)">Submit</button>
+            <button type="button" ng-show="update" class="btn btn-primary" ng-disabled="libraryform.$invalid" ng-click="updateData(node, key)">Update</button>
             </form>
 
         </div>
@@ -40,13 +46,14 @@
                     <td>{{data.value.title}}</td>
                     <td>{{data.value.name}}</td>
                     <td>{{data.value.author}}</td>
-                    <td><a><span class="glyphicon glyphicon-pencil"></span></a></td>
-                    <td><a ng-click="delete(node, data.key)"><span class="glyphicon glyphicon-trash"></span></a></td>
+                    <td><a ng-click="edit(data)"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                    <td><a ng-click="deletePopup(node, data.key)"><span class="glyphicon glyphicon-trash"></span></a></td>
                 </tr>
 
                 </tbody>
 
             </table>
+            <h3 ng-show="!(getdata | filter : search).length">No matching records found</h3>
             <div class="page">
                 <dir-pagination-controls
                         max-size="9"
@@ -56,6 +63,7 @@
                 </dir-pagination-controls>
             </div>
         </div>
+        <toaster-container toaster-options="{'close-button': true,'animation-class': 'toast-top-center'}"></toaster-container>
 
     </div>
 

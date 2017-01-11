@@ -10,7 +10,7 @@
 	<div role="tabpanel" class="tab-pane active"  ng-hide="tabOne">
 
 
-		<form name="studentform">
+		<form class="form-horizontal" name="studentform">
 		<input type="text" placeholder="Name" ng-model="data.name"  class="form-control" required>
 		<input type="text" placeholder="Batch No" ng-model="data.batch" class="form-control" required>
 			<select class="select form-control" ng-model="data.semester" ng-options="sem for sem in semester" required>

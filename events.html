@@ -15,7 +15,8 @@
                     <input type="text" placeholder="Event Title" ng-model="data.name"  class="form-control" required>
                     <input type="text" placeholder="Event Type" ng-model="data.type" class="form-control" required>
                     <textarea rows="5" placeholder="Event Description" ng-model="data.description" class="form-control" required></textarea>
-                    <button type="button" class="btn btn-primary" ng-disabled="eventsform.$invalid"  ng-click="allData(node)">Submit</button>
+                    <button type="button" ng-hide="insert" class="btn btn-primary" ng-disabled="eventsform.$invalid" ng-click="allData(node)">Submit</button>
+                    <button type="button" ng-show="update" class="btn btn-primary" ng-disabled="eventsform.$invalid" ng-click="updateData(node, key)">Update</button>
 
                 </form>
 
@@ -39,13 +40,14 @@
                         <td>{{data.value.name}}</td>
                         <td>{{data.value.type}}</td>
                         <td>{{data.value.description}}</td>
-                        <td><a><span class="glyphicon glyphicon-pencil"></span></a></td>
-                        <td><a ng-click="delete(node, data.key)"><span class="glyphicon glyphicon-trash"></span></a></td>
+                        <td><a ng-click="edit(data)"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                        <td><a ng-click="deletePopup(node, data.key)"><span class="glyphicon glyphicon-trash"></span></a></td>
                     </tr>
 
                     </tbody>
 
                 </table>
+                <h3 ng-show="!(getdata | filter : search).length">No matching records found</h3>
                 <div class="page">
                     <dir-pagination-controls
                             max-size="9"
@@ -54,8 +56,8 @@
 
                     </dir-pagination-controls>
                 </div>
-
             </div>
+            <toaster-container toaster-options="{'close-button': true,'animation-class': 'toast-top-center'}"></toaster-container>
 
         </div>
 

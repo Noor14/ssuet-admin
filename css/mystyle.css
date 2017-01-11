@@ -55,9 +55,12 @@ h3{
     color: #30a5ff;
     font-family: serif;
 }
-.notactive{
-    background-color: red !important;
+.form-horizontal .col-md-6{
+    padding: 0px;
+
 }
+
+
 @media only screen and (max-width:600px){
     .nav-tabs>li {
         width: 100%;
