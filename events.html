@@ -16,7 +16,7 @@
 
                         <input  type="file" accept="image/*" ngf-select ng-model="data.image" class="form-control" required>
                     </div>
-                    <div class="col-md-3 imageCheck" ng-show="data.image"><img class="images image-responsive" ng-show="eventsform.file.$valid" ngf-thumbnail="data.image" >Image uploaded</div>
+                    <div class="col-md-3 imageCheck" ng-show="data.image"><img class="images" ng-show="eventsform.file.$valid" ngf-thumbnail="data.image" >Image uploaded</div>
                     <div class="col-md-3">
                         <button ng-click="imagePopup(data.image)" ng-disabled="!data.image" class="form-control btn btn-primary"> <span class="glyphicon glyphicon-zoom-in"></span> View full image</button>
                     </div>
@@ -45,9 +45,9 @@
 
                     </thead>
                     <tbody>
-                    <tr dir-paginate="data in getdata | itemsPerPage: 10">
+                    <tr dir-paginate="data in getdata | filter : search | itemsPerPage: 10">
                         <td>{{$index+1}}</td>
-                        <td><img class="images image-responsive" ng-src="{{data.value.image}}"/> </td>
+                        <td><img class="images" ng-src="{{data.value.image}}"/>  <a ng-click="imagePopup(data.value.image)"><span class="glyphicon glyphicon-zoom-in"></span></a></td>
                         <td>{{data.value.name}}</td>
                         <td>{{data.value.type}}</td>
                         <td>{{data.value.description}}</td>
@@ -59,6 +59,7 @@
 
                 </table>
                 <h3 ng-show="!(getdata | filter : search).length">No matching records found</h3>
+
                 <div class="page">
                     <dir-pagination-controls
                             max-size="9"
