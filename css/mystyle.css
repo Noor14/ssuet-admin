@@ -59,6 +59,34 @@ h3{
     padding: 0px;
 
 }
+.imageCheck{
+    padding: 10px;
+    text-align: center;
+    color: #30a5ff;
+}
+.images{
+    width: 30px;
+    height: 22px;
+    border-radius: 2px;
+    margin: 0 7px;
+}
+.fullimage{
+    width:100%;
+}
+input[type=file] {
+    border:none !important;
+    padding: 4px 12px;
+
+}
+
+input[type=file]::-webkit-file-upload-button {
+    border: none;
+    border-radius: 2px;
+    padding: 4px 12px;
+    -webkit-appearance: button;
+    background:#30a5ff !important;
+    color:#fff;
+}
 
 
 @media only screen and (max-width:600px){

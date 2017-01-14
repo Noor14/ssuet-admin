@@ -13,17 +13,20 @@
 
             <form class="form-horizontal" name="libraryform">
                 <div class="col-md-6">
-            <input  type="file" ng-model="data.image" class="form-control" required>
+            <input  type="file" accept="image/*" ngf-select ng-model="data.image" class="form-control" required>
                 </div>
+                <div class="col-md-3 imageCheck" ng-show="data.image"><img class="images image-responsive" ng-show="libraryform.file.$valid" ngf-thumbnail="data.image" >Image uploaded</div>
                 <div class="col-md-3">
-                    <button ng-disabled="!data.image" class="form-control btn btn-primary"> <span class="glyphicon glyphicon-zoom-in"></span> View</button>
+                   <button ng-click="imagePopup(data.image)" ng-disabled="!data.image" class="form-control btn btn-primary"> <span class="glyphicon glyphicon-zoom-in"></span> View full image</button>
                 </div>
 
                 <input type="text" placeholder="Book Title" ng-model="data.title"  class="form-control" required>
             <input type="text" placeholder="Book Name" ng-model="data.name" class="form-control" required>
             <input type="text" placeholder="Author Name" ng-model="data.author" class="form-control" required>
-            <button type="button" ng-hide="insert" class="btn btn-primary" ng-disabled="libraryform.$invalid" ng-click="allData(node)">Submit</button>
-            <button type="button" ng-show="update" class="btn btn-primary" ng-disabled="libraryform.$invalid" ng-click="updateData(node, key)">Update</button>
+            <button type="button" ng-hide="insert" class="btn btn-primary" ng-disabled="libraryform.$invalid" ng-click="save(data.image)">Submit</button>
+            <button type="button" ng-show="update" class="btn btn-primary" ng-disabled="libraryform.$invalid" ng-click="updateFileData(data.image, key)">Update</button>
+            <img class="loader" ng-src ="{{loadingImage}}" ng-hide="active">
+
             </form>
 
         </div>
@@ -35,6 +38,7 @@
                     <th>Book Title</th>
                     <th>Book Name</th>
                     <th>Author Name</th>
+                    <th>Book Cover</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
@@ -46,6 +50,7 @@
                     <td>{{data.value.title}}</td>
                     <td>{{data.value.name}}</td>
                     <td>{{data.value.author}}</td>
+                    <td><img class="images image-responsive" ng-src="{{data.value.image}}"/> </td>
                     <td><a ng-click="edit(data)"><span class="glyphicon glyphicon-pencil"></span></a></td>
                     <td><a ng-click="deletePopup(node, data.key)"><span class="glyphicon glyphicon-trash"></span></a></td>
                 </tr>

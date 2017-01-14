@@ -13,14 +13,20 @@
 
 
             <form class="form-horizontal" name="jobform">
-
-            <!--<input type="file" placeholder="Choose an image" ng-model="data.image"  class="form-control" required>-->
+                <div class="col-md-6">
+                    <input  type="file" accept="image/*" ngf-select ng-model="data.image" class="form-control" required>
+                </div>
+                <div class="col-md-3 imageCheck" ng-show="data.image"><img class="images image-responsive" ng-show="jobform.file.$valid" ngf-thumbnail="data.image" >Image uploaded</div>
+                <div class="col-md-3">
+                    <button ng-click="imagePopup(data.image)" ng-disabled="!data.image" class="form-control btn btn-primary"> <span class="glyphicon glyphicon-zoom-in"></span> View full image</button>
+                </div>
             <input type="text" placeholder="Job Title" ng-model="data.name"  class="form-control" required>
             <input type="text" placeholder="Job Type" ng-model="data.type" class="form-control" required>
             <input type="text" placeholder="Company Name" ng-model="data.company_name" class="form-control" required>
             <textarea placeholder="Job Description" rows="5" ng-model="data.description" class="form-control" required></textarea>
-            <button type="button" ng-hide="insert" class="btn btn-primary" ng-disabled="jobform.$invalid" ng-click="allData(node)">Submit</button>
-            <button type="button" ng-show="update" class="btn btn-primary" ng-disabled="jobform.$invalid" ng-click="updateData(node, key)">Update</button>
+            <button type="button" ng-hide="insert" class="btn btn-primary" ng-disabled="jobform.$invalid" ng-click="save(data.image)">Submit</button>
+            <button type="button" ng-show="update" class="btn btn-primary" ng-disabled="jobform.$invalid" ng-click="updateFileData(data.image, key)">Update</button>
+                <img class="loader" ng-src ="{{loadingImage}}" ng-hide="active">
             </form>
 
         </div>
@@ -29,6 +35,7 @@
                 <thead>
                 <tr>
                     <th>#</th>
+                    <th>Job Poster</th>
                     <th>Job Title</th>
                     <th>Job Type</th>
                     <th>Company Name</th>
@@ -41,6 +48,7 @@
                 <tbody>
                 <tr dir-paginate="data in getdata | itemsPerPage: 10">
                     <td>{{$index+1}}</td>
+                    <td><img class="images image-responsive" ng-src="{{data.value.image}}"/> </td>
                     <td>{{data.value.name}}</td>
                     <td>{{data.value.type}}</td>
                     <td>{{data.value.company_name}}</td>

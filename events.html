@@ -12,11 +12,20 @@
 
 
                 <form  class="form-horizontal" name="eventsform">
+                    <div class="col-md-6">
+
+                        <input  type="file" accept="image/*" ngf-select ng-model="data.image" class="form-control" required>
+                    </div>
+                    <div class="col-md-3 imageCheck" ng-show="data.image"><img class="images image-responsive" ng-show="eventsform.file.$valid" ngf-thumbnail="data.image" >Image uploaded</div>
+                    <div class="col-md-3">
+                        <button ng-click="imagePopup(data.image)" ng-disabled="!data.image" class="form-control btn btn-primary"> <span class="glyphicon glyphicon-zoom-in"></span> View full image</button>
+                    </div>
                     <input type="text" placeholder="Event Title" ng-model="data.name"  class="form-control" required>
                     <input type="text" placeholder="Event Type" ng-model="data.type" class="form-control" required>
                     <textarea rows="5" placeholder="Event Description" ng-model="data.description" class="form-control" required></textarea>
-                    <button type="button" ng-hide="insert" class="btn btn-primary" ng-disabled="eventsform.$invalid" ng-click="allData(node)">Submit</button>
-                    <button type="button" ng-show="update" class="btn btn-primary" ng-disabled="eventsform.$invalid" ng-click="updateData(node, key)">Update</button>
+                    <button type="button" ng-hide="insert" class="btn btn-primary" ng-disabled="eventsform.$invalid" ng-click="save(data.image)">Submit</button>
+                    <button type="button" ng-show="update" class="btn btn-primary" ng-disabled="eventsform.$invalid" ng-click="updateFileData(data.image, key)">Update</button>
+                    <img class="loader" ng-src ="{{loadingImage}}" ng-hide="active">
 
                 </form>
 
@@ -27,6 +36,7 @@
                     <tr>
                         <th>#</th>
                         <th>Event Name</th>
+                        <th>Event Image</th>
                         <th>Event Type</th>
                         <th>Event Description</th>
                         <th>Edit</th>
@@ -37,6 +47,7 @@
                     <tbody>
                     <tr dir-paginate="data in getdata | itemsPerPage: 10">
                         <td>{{$index+1}}</td>
+                        <td><img class="images image-responsive" ng-src="{{data.value.image}}"/> </td>
                         <td>{{data.value.name}}</td>
                         <td>{{data.value.type}}</td>
                         <td>{{data.value.description}}</td>
