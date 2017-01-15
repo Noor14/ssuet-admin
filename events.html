@@ -47,8 +47,8 @@
                     <tbody>
                     <tr dir-paginate="data in getdata | filter : search | itemsPerPage: 10">
                         <td>{{$index+1}}</td>
-                        <td><img class="images" ng-src="{{data.value.image}}"/>  <a ng-click="imagePopup(data.value.image)"><span class="glyphicon glyphicon-zoom-in"></span></a></td>
                         <td>{{data.value.name}}</td>
+                        <td><span class="img"><img class="images" ng-src="{{data.value.image}}"/> <a ng-click="imagePopup(data.value.image)"><span class="glyphicon glyphicon-zoom-in"></span></a></span></td>
                         <td>{{data.value.type}}</td>
                         <td>{{data.value.description}}</td>
                         <td><a ng-click="edit(data)"><span class="glyphicon glyphicon-pencil"></span></a></td>

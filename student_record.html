@@ -1,5 +1,5 @@
 
-<div class="col-md-8 col-md-offset-2 card">
+<div class="col-md-9 col-md-offset-2 card">
 
 <ul class="nav nav-tabs col-md-12" role="tablist">
 	<li role="presentation" class="active col-md-6 col-sm-6 col-xs-6"><a ng-click="insertform()" aria-controls="home" role="tab" data-toggle="tab">Insert Record</a></li>
@@ -11,7 +11,8 @@
 
 
 		<form class="form-horizontal" name="studentform">
-		<input type="text" placeholder="Name" ng-model="data.name"  class="form-control" required>
+			<input type="text" placeholder="Name" ng-model="data.name"  class="form-control" required>
+			<input type="email" placeholder="Email" ng-model="data.email"  class="form-control" required>
 		<input type="text" placeholder="Batch No" ng-model="data.batch" class="form-control" required>
 			<select class="select form-control" ng-model="data.semester" ng-options="sem for sem in semester" required>
 				<option value="">Select Semester</option>
@@ -30,6 +31,7 @@
 			<tr>
 				<th>#</th>
 				<th>Name</th>
+				<th>Email</th>
 				<th>Batch</th>
 				<th>Semester</th>
 				<th>Attendance</th>
@@ -44,6 +46,7 @@
 			<tr dir-paginate="data in getdata | filter : search | itemsPerPage: 10">
 				<td>{{$index+1}}</td>
 				<td>{{data.value.name}}</td>
+				<td>{{data.value.email}}</td>
 				<td>{{data.value.batch}}</td>
 				<td>{{data.value.semester}}</td>
 				<td>{{data.value.attendance}}</td>
