@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="form">
+
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,74 +23,9 @@
 </head>
 
 <body>
-	<nav ng-hide="state" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" ui-sref="student_record"><span>SSUET</span>Admin</a>
-				<ul class="user-menu">
-					<li class="dropdown pull-right">
-						<a class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> {{user}} <span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="#"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Profile</a></li>
-							<li><a href="#"><svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg> Settings</a></li>
-							<li><a ng-click="logout()"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Logout</a></li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-							
-		</div><!-- /.container-fluid -->
-	</nav>
-		
-	<div ng-hide="state" id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 
-		<ul class="nav menu">
-			<li class="active"><a ui-sref="student_record"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
-			<li><a ui-sref="student_record"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg>Student Record</a></li>
-			<li><a ui-sref="library"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg>Library Record</a></li>
-			<li><a ui-sref="events"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg>Events</a></li>
-			<li><a ui-sref="job"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg>Job</a></li>
-			<li role="presentation" class="divider"></li>
-		</ul>
+<ui-view></ui-view>
 
-	</div><!--/.sidebar-->
-		
-	<div class="col-lg-10 col-lg-offset-2 main" ng-class="main">
-		<div ng-hide="state" class="row">
-			<ol class="breadcrumb">
-				<li><a ui-sref="student_record"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
-				<li class="active">{{current_page}}</li>
-			</ol>
-		</div><!--/.row-->
-		
-		<!--<div ng-hide="state" class="row">-->
-			<!--<div class="col-lg-12">-->
-				<!--<h1 class="page-header">{{current_page}}</h1>-->
-			<!--</div>-->
-		<!--</div>&lt;!&ndash;/.row&ndash;&gt;-->
-		
-
-		<div class="row">
-			<div class="col-lg-12">
-				<div ng-class="panel">
-					<div  ng-hide="state"  class="panel-heading">Overview <input ng-model="search" placeholder="Search" autofocus type="text" class="search form-control"></div>
-					<div ng-class="class">
-
-					<ui-view></ui-view>
-
-					</div>
-				</div>
-			</div>
-		</div><!--/.row-->
-
-
-	</div>	<!--/.main-->
 
 	<script src="bower_components/angular/angular.min.js"></script>
 	<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>

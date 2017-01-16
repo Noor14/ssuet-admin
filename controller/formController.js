@@ -1,8 +1,7 @@
-web.controller('formcont', function($rootScope, $scope, $state, $cookies, ngDialog, toaster, Upload){
+web.controller('formcont', function($scope, $state, $cookies, ngDialog, toaster, Upload){
     $scope.data = {};
     $scope.user = {};
-    $scope.node = $state.current.name;
-    $rootScope.current_page = $state.current.title;
+    $scope.node = $state.current.dataname;
     $scope.loadingImage = "images/load.gif";
     $scope.active = true;
     $scope.insert = false;
@@ -106,7 +105,7 @@ web.controller('formcont', function($rootScope, $scope, $state, $cookies, ngDial
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             console.log(user.email);
-            $rootScope.user = user.email;
+            $scope.user.email = user.email;
             //$state.go("student_record");
 
         }
@@ -116,13 +115,13 @@ web.controller('formcont', function($rootScope, $scope, $state, $cookies, ngDial
         }
     });
 
-
+console.log($state,"mkli");
 
 
     $scope.retrieve = function(){
 
 
-        var ref = firebase.database().ref($state.current.name);
+        var ref = firebase.database().ref($state.current.dataname);
         //var ref = firebase.database().ref();
 
         //ref.on("value", function(snapshot) {
@@ -167,7 +166,7 @@ web.controller('formcont', function($rootScope, $scope, $state, $cookies, ngDial
                 $cookies.put('email', $scope.user.email);
                 $cookies.put('password', $scope.user.password);
                 $scope.active = true;
-                $state.go("student_record");
+                $state.go("parent");
             }
 
         },function(error){
@@ -283,6 +282,17 @@ web.controller('formcont', function($rootScope, $scope, $state, $cookies, ngDial
             );
         });
 
+    };
+    $scope.logout= function(){
+
+        firebase.auth().signOut().then(function() {
+            console.log("Logged out!");
+            $scope.user='';
+            $state.go("login");
+        }, function(error) {
+            console.log(error.code);
+            console.log(error.message);
+        });
     };
 
 });
