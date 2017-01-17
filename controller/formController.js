@@ -1,4 +1,4 @@
-web.controller('formcont', function($scope, $state, $cookies, ngDialog, toaster, Upload){
+web.controller('formcont', function($rootScope, $scope, $state, $cookies, ngDialog, toaster, Upload){
     $scope.data = {};
     $scope.user = {};
     $scope.node = $state.current.dataname;
@@ -105,8 +105,7 @@ web.controller('formcont', function($scope, $state, $cookies, ngDialog, toaster,
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             console.log(user.email);
-            $scope.user.email = user.email;
-            //$state.go("student_record");
+            $rootScope.user = user;
 
         }
         else{
@@ -166,7 +165,7 @@ console.log($state,"mkli");
                 $cookies.put('email', $scope.user.email);
                 $cookies.put('password', $scope.user.password);
                 $scope.active = true;
-                $state.go("parent");
+                $state.go("home.dashboard");
             }
 
         },function(error){
@@ -287,7 +286,7 @@ console.log($state,"mkli");
 
         firebase.auth().signOut().then(function() {
             console.log("Logged out!");
-            $scope.user='';
+            $rootScope.user = '';
             $state.go("login");
         }, function(error) {
             console.log(error.code);

@@ -4,17 +4,16 @@ web.run(function($rootScope, $state){
     $rootScope
         .$on('$stateChangeStart',
             function (e, toState, toParams, fromState, fromParams) {
-
                 if(toState.name == 'login' && $rootScope.user){
                     e.preventDefault();
-                    $state.go('parent.student_record');
+                    $state.go('home.dashboard');
                 }
 
             });
 });
 
 web.config(function($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/');
 
 
     $stateProvider
@@ -24,14 +23,21 @@ web.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'login.html',
             controller: "formcont"
         })
-        .state('parent', {
-            url: '/home',
-            templateUrl: 'parent.html',
+        .state('home', {
+            url: '',
+            templateUrl: 'home.html',
+            controller: "formcont",
+            abstract: true
+        })
+
+        .state('home.dashboard', {
+            url: '/',
+            templateUrl: 'dashboard.html',
+            dataname:'student_record',
             controller: "formcont"
 
         })
-
-        .state('parent.student_record', {
+        .state('home.student_record', {
             url: '/student_record',
             templateUrl: 'student_record.html',
             dataname:'student_record',
@@ -40,17 +46,24 @@ web.config(function($stateProvider, $urlRouterProvider) {
         })
 
 
-        .state('parent.library', {
+        .state('home.library', {
             url: '/library',
             templateUrl: 'library.html',
             dataname:'library',
             controller: "formcont"
 
 
+        }).state('home.employee_record', {
+            url: '/employee',
+            templateUrl: 'employee.html',
+            dataname:'employee_record',
+            controller: "formcont"
+
+
         })
 
 
-        .state('parent.job', {
+        .state('home.job', {
             url: '/job',
             templateUrl: 'job.html',
             dataname:'job',
@@ -60,7 +73,7 @@ web.config(function($stateProvider, $urlRouterProvider) {
         })
 
 
-        .state('parent.events', {
+        .state('home.events', {
             url: '/events',
             templateUrl: 'events.html',
             dataname:'events',
