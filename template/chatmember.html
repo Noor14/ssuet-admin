@@ -1,0 +1,5 @@
+<ul class="nav menu" ng-click="name = 'member'">
+    <li class="active" ><a><svg class="glyph stroked male user "><use xlink:href="#stroked-male-user"></use></svg> Contacts <span class="badge">{{chatMember.length}}</span></a> </li>
+    <li ng-repeat="chat in chatMember"><a ng-click="chatBox(chat)"><img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class="img-circle">{{chat.name}} <span ng-hide="chat.Status == 'offline'" class="glyphicon glyphicon-dot-online"></span><span ng-if="chat.Status == 'offline'" class="glyphicon glyphicon-dot-offline"></span></a></li>
+    <li role="presentation" class="divider"></li>
+</ul>
