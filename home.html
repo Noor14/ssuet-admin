@@ -27,15 +27,21 @@
 
     <ul class="nav menu">
         <li class="active"><a ui-sref="home.dashboard"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
-        <li><a ui-sref="home.student_record"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg>Student Record</a></li>
-        <li><a ui-sref="home.library"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg>Library Record</a></li>
-        <li><a ui-sref="home.employee_record"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg>Employee Record</a></li>
-        <li><a ui-sref="home.events"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg>Events</a></li>
-        <li><a ui-sref="home.job"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg>Job</a></li>
+        <!--<li><a ui-sref="home.student_record"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg>Student Record</a></li>-->
+        <!--<li><a ui-sref="home.library"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg>Library Record</a></li>-->
+        <!--<li><a ui-sref="home.employee_record"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg>Employee Record</a></li>-->
+        <!--<li><a ui-sref="home.events"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg>Events</a></li>-->
+        <!--<li><a ui-sref="home.job"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg>Job</a></li>-->
+        <li class="animated slideInLeft" ng-repeat="list in lists">
+            <a ui-sref= list.state >
+                <svg class="glyph stroked pencil">
+                    <use xlink:href="#stroked-pencil"></use>
+                </svg>{{list.link}}</a>
+        </li>
         <li role="presentation" class="divider"></li>
     </ul>
 
-    <div class="contactlist" ng-include="'template/chatmember.html'" ng-controller="chatController">
+    <div  class="scroll-body" slimscroll="{height: 300px;}" ng-include="'template/chatmember.html'" ng-controller="chatController">
 
     </div>
 </div><!--/.sidebar-->

@@ -293,5 +293,7 @@ console.log($state,"mkli");
             console.log(error.message);
         });
     };
-
+$scope.$on('list',function(event, relation){
+    $scope.lists = relation;
+})
 });

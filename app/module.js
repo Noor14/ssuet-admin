@@ -1,4 +1,4 @@
-var web = angular.module ("form", ['ngFileUpload','firebase','ui.router','ngCookies','angularUtils.directives.dirPagination', 'angular.filter','ngDialog','toaster', 'ngAnimate']);
+var web = angular.module ("form", ['ngFileUpload','ui.slimscroll','firebase','ui.router','ngCookies','angularUtils.directives.dirPagination', 'angular.filter','ngDialog','toaster', 'ngAnimate']);
 
 web.run(function($rootScope, $state){
     $rootScope
@@ -34,7 +34,7 @@ web.config(function($stateProvider, $urlRouterProvider) {
             url: '/',
             templateUrl: 'dashboard.html',
             dataname:'student_record',
-            controller: "formcont"
+            controller: "dashboardController"
 
         })
         .state('home.student_record', {
